@@ -1,0 +1,31 @@
+Appendix A-1: All Testing Events
+AUD BEC FAR REG
+Minnesota Total Total “Total. “cotal Rate gt ming ae Secs %Pass Secs %Pass Secs %Pass Secs %Pass
+Concordia University, St. Paul (2347) 13 25 14 11 240% 646 29.9 6 16.7% 2 50.0% 10 10.0% 7 42.9%
+Gustavus Adolphus College (2353) 29 71 40 31 49.3% 73.5 24.3 21 52.4% 12 66.7% 22 «= 40.9% 16 43.8%
+Hamline University (2354) 13 28 22 6 64.3% 745 27.8 8 62.5% 5 60.0% 10 70.0% 5 60.0%
+Metropolitan State University (10374) 38 71 34 37 46.5% 67.4 36.9 24 33.3% 15 667% 22 40.9% 10 60.0%
+Minnesota State University - Mankato (2360) 79 183 123 60 63.4% 76.3 26.5 49 63.3% 42 619% 53 66.0% 39 61.5%
+Minnesota State University - Moorhead (2367) 30 66 32 34 515% 718 28.2 22 «59.1% 7 57.1% 21 38.1% 16 56.3%
+Saint John's University (2379) 54 126 76 50 57.1% 75.8 24.5 39 43.6% 19 895% 34. 47.1% 34. 64.7%
+Southwest Minnesota State Univ (2375) 20 59 27 32 57.6% 75.7 27.2 17 41.2% 16 62.5% 16 625% 10 70.0%
+St Mary's University of Minnesota (2380) 16 31 17 14 48.4% 69.2 28.9 5 80.0% 7 57.1% 10 30.0% 9 44.4%
+St. Catherine University - Saint Paul (2342) 6 15 5 10 53.3% 715 26.6 3 66.7% 4 750% 4 50.0% 4 25.0%
+St. Cloud State University (2377) 79 183 109 74 58.5% 74.1 27.9 59 49.2% 42 595% 49 59.2% 33. 72.7%
+The College of Saint Scholastica (2343) 18 45 27 18 55.6% 74.5 27.5 13 46.2% 10 80.0% 13 38.5% 9 66.7%
+z University of Minnesota (3969) 196 495 343 152 737% 793 25.9 130 72.3% 107 83.2% 136 70.6% 122 70.5%
+University of Minnesota - Crookston (4069) 14 22 12 10 50.0% 707 28.7 6 50.0% 4 75.0% 6 50.0% 6 33.3%
+University of Minnesota - Duluth (2388) 69 161 100 61 52.2% 73.7 25.3 48 39.6% 39 61.5% 44 45.5% 30 70.0%
+University of Northwestern St. Paul (2371) 17 47 38 9 70.2% 79.0 23.7 12 83.3% 10 90.0% 11 63.6% 14 50.0%
+University of Saint Thomas (2345) 107 259 182 77 62.2% 76.1 25.0 68 63.2% 68 64.7% 61 623% 62 58.1%
+Walden University (25042) 17 31 14 17 29.0% 624 37.9 7 28.6% 6 16.7% 12 33.3% 6 33.3%
+Winona State University (2394) 42 99 55 44 58.6% 73.7 26.4 30 60.0% 12 83.3% 29 «41.4% 28 4 ©64.3%
+Mississippi
+Belhaven University (2397) 8 14 5 9 50.0% 70.1 34.8 3 66.7% 7 42.9% 2 50.0% 2 50.0%
+Delta State University (2403) 11 19 5 14 36.8% 67.8 31.7 5 20.0% 5 40.0% 6 50.0% 3 33.3%
+Jackson State University (2410) 20 54 15 39 27.8% 59.5 31.9 19 26.3% 9 33.3% 16 12.5% 10 50.0%
+Millsaps College (2414) 44 105 58 47 49.5% 72.0 25.2 23 «= 60.9% 30 43.3% 22 «54.5% 30 43.3%
+Mississippi College (2415) 27 46 27 19 50.0% 65.4 27.6 12 25.0% 13 61.5% 13 53.8% 8 62.5%
+Mississippi State University (2423) 178 420 240 180 486% 70.6 25.9 103 45.6% 103 59.2% 125 35.2% 89 584%
+Mississippi University for Women (2422) 8 15 10 5 60.0% 65.9 27.0 6 50.0% 4 75.0% 2 50.0% 3 66.7%
+University of Mississippi (2440) 347, 1004 = 766 238 8 66.7% = 76.4 24.4 288 56.9% 232 759% 237 688% 247 67.6%

@@ -1,0 +1,35 @@
+Appendix A-1: All Testing Events
+AUD BEC FAR REG
+Massachusetts Total Total *Sotal Total ¥ Rate pring a Secs ‘Pass Secs %Pass Secs %Pass Secs %Pass
+
+Merrimack College (2120) 29 59 31 28 33.9% 66.1 26.6 14 28.6% 10 80.0% 20 20.0% 15 26.7%
+
+Nichols College (2197) 14 26 13 13 46.2% 696 28.3 3 66.7% 8 375% 8 37.5% 7 87.1%
+Northeastern University (2199) 197 448 290 158 63.8% 76.9 27.3 132 576% 82 744% 139 59.7% 95 695%
+Salem State University (2188) 29 49 21 28 30.6% 66.4 30.2 12 33.3% 12 41.7% 20 25.0% 5 20.0%
+Stonehill College (2217) 57 124 63 61 50.0% 72.0 24.8 35 486% 22 63.6% 39 = 35.9% 28 60.7%
+Suffolk University (2218) 94 193 107 86 47.2% 71.4 29.7 62 43.5% 36 528% 60 45.0% 35 951.4%
+University of Massachusetts (2221) 251 552 333 219 62.0% 75.8 26.4 154 61.7% 108 769% 180 51.1% 110 65.5%
+University of Massachusetts - Boston (2222) 62 124 57 67 419% 694 33.7 39 38.5% 29 41.4% 32 37.5% 24 54.2%
+University of Massachusetts - Dartmouth (2210) 41 82 37 45 35.4% 654 28.0 20 45.0% 19 421% 26 26.9% 17 29.4%
+University of Massachusetts - Lowell (2161) 62 122 77 45 52.5% 704 28.9 23 78.3% 25 56.0% 46 348% 28 39 57.1%
+Western New England University (2226) 40 81 46 35 43.2% 70.1 28.0 22 31.8% 13 76.9% 29 34.5% 17 47.1%
+Westfield State University (2189) 17 31 22 9 35.5% 676 30.6 6 33.3% 1 100.0% 20 25.0% 4 75.0%
+2 Worcester State University (2190) 17 40 22 18 45.0% 65.2 28.9 13 38.5% 4 75.0% 14 35.7% 9 556%
+
+Michigan
+
+Adrian College (2234) 25 51 39 12 56.9% 715 24.4 21 23.8% 17 70.6% 5 100.0% 8 87.5%
+Albion College (2235) 18 44 19 25 43.2% 717 23.7 14 50.0% 9 556% 10 30.0% 11 36.4%
+Alma College (2236) 15 38 11 27 34.2% 66,7 26.4 11 36.4% 6 50.0% 11 36.4% 10 20.0%
+Andrews University (2238) 17 42 24 18 429% 68.1 32.4 9 33.3% 8 625% 11 54.5% 14 28.6%
+Aquinas College (2239) 23 57 43 14 68.4% 776 24.5 13 46.2% 14 929% 15 60.0% 15 73.3%
+Baker College of Flint (4673) 8 14 7 7 286% 67.9 36.5 6 16.7% 2 50.0% 4 25.0% 2 50.0%
+Calvin College (2241) 35 91 65 26 73.6% 794 24.6 31 61.3% 15 86.7% 27 74.1% 18 83.3%
+Central Michigan University (2243) 105 216 146 70 60.2% 746 25.4 68 529% 45 644% 56 53.6% 47 74.5%
+Cornerstone University (2266) 8 16 6 10 43.8% 693 30.2 3 66.7% 6 33.3% 3 33.3% 4 50.0%
+Davenport University (2249) 44 93 54 39 45.2% 703 30.4 23 47.8% 21 47.6% 25 28.0% 24 58.3%
+Eastern Michigan University (2259) 82 183 106 77 53.0% 72.9 28.8 63 42.9% 33 63.6% 45 51.1% 42 61.9%
+Ferris State University (2260) 26 48 24 24 54.2% 73.1 30.4 12 58.3% 9 444% 15 33.3% 12 83.3%
+Grand Valley State University (2268) 78 165 124 41 62.4% 75.5 25.4 47 574% 34 67.6% 43 65.1% 41 61.0%
+Grand Valley State University Pew Campus (770274) 47 94 58 36 617% 740 26.4 20 70.0% 20 80.0% 27 «51.9% 27 = 1.9%

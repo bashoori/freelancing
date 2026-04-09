@@ -1,0 +1,33 @@
+Appendix A-1: All Testing Events
+AUD BEC FAR REG
+Ton Ten, PMCETT Gece Ret Pace ‘Average Average | isa Gibind Gade Pass Secs %Pass Secs %Pass
+Arizona Total Total Total Total Rate Score Age
+Grand Canyon University (1074) 74 164 90 74 48.8% 69.4 31.9 37 56.8% 36 50.0% 47 34.0% 44 56 BY
+Northern Arizona University (1082) 76 156 101 55 59.0% 744 27.4 50 58.0% 25 68.0% 48 50.0% 33 66.7%
+University of Arizona (1083) 210 464 291 173 61.4% 75.0 26.5 117 60.7% 89 76.4% 130 47.7% 128 656%
+University of Phoenix (20988) 205 403 147 256 32.3% 66.7 41.5 107 23.4% 82 305% 122 27.9% 92 50.0%
+Arkansas
+Arkansas State Univ - Jonesboro (1090) 63 134 74 60 53.0% 72.0 28.1 35 = 57.1% 22 636% 57 = 42.1% 20 65.0%
+Arkansas Tech University (1089) 21 50 28 22 58.0% 74.5 30.3 19 474% 10 60.0% 10 70.0% 11 63.6%
+Harding University Main Campus (1097) 65 153 78 75 54.9% 72.2 25.7 48 542% 23 65.2% 52 44.2% 30 66.7%
+Henderson State University (1098) 12 25 12 13 44.0% 68.7 27.1 4 50.0% 7 57.1% 7 42.9% 7 28.6%
+Hendrix College (1099) 18 41 19 22 58.5% 76.8 27.3 15 53.3% 6 100.0% 13 308% 7 85.7%
+John Brown University (1100) 6 14 7 7 64.3% 76.4 25.3 4 50.0% 2 50.0% 5 60.0% 3 100.0%
+r Ouachita Baptist University (1102) 24 69 38 31 55.1% 72.6 24.2 15 60.0% 14 57.1% 23 52.2% 17 52.9%
+& Southern Arkansas University (1107) 13 29 22 7 55.2% 69.1 31.6 6 50.0% 5 40.0% 12 583% 6 66.7%
+Univ of Arkansas - Fort Smith (1110) 22 40 17 23 22.5% 62.8 34.4 9 11.1% 8 25.0% 17 = 11.8% 6 66.7%
+Univ of Arkansas - Little Rock (1101) 38 76 42 34 48.7% 69.3 36.5 18 50.0% 15 53.3% 25 440% 18 50.0%
+Univ of Arkansas - Main Campus (1108) 162 422 275 147 67.8% 77.1 25.3 96 68.8% 95 74.7% 132 59.1% 99 71.7%
+Univ of Arkansas - Monticello (1085) 16 26 11 15 42.3% 67.7 34.6 6 33.3% 7 42.9% 11 36.4% 2 100.0%
+Univ of Arkansas - Pine Bluff (1086) 6 11 5 6 54.5% 66.6 415 3 0.0% 2 100.0% 5 60.0% 1 100.0%
+University of Central Arkansas (1092) 74 172 100 72 51.2% 73.0 28.4 45 57.8% 33 606% 51 37.3% 43 53.5%
+California
+Azusa Pacific University (1117) 33 68 28 40 44.1% 70.9 27.6 17 = AT1A% 13 30.8% 19 42.1% 19 526%
+Biola University (1122) 40 91 47 44 51.6% 73.3 25.5 20 50.0% 21 52.4% 28 53.6% 22 50.0%
+California Baptist University (1125) 30 48 36 12 417% 634 26.4 9 55.6% 11 36.4% 21 38.1% 7 42.9%
+California Lutheran University (1133) 41 105 44 61 43.8% 707 29.5 32. 37.5% 20 45.0% 31 45.2% 22 50.0%
+California Poly State University - San Luis Obispo (1143) 318 706 550 156 71.1% 78.3 24.3 209 59.8% 157 86.0% 196 64.8% 144 79.9%
+California State Poly Univ - Pomona (1144) 180 398 186 212 46.2% 70.8 28.9 107 42.1% 79 51.9% 122 41.0% 90 53.3%
+15 40.0%
+California State University - Bakersfield (7993) 44 80 42 38 32.5% 656 30.4 21 33.3% 19 21.1% 25 36.0%
+California State University - Chico (1146) 89 156 87 69 60.9% 74.1 28.3 41 61.0% 31 61.3% 57 526% 27-0 77.8%

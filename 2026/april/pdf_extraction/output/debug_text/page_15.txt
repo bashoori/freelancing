@@ -1,0 +1,31 @@
+Appendix A-1: All Testing Events
+AUD BEC FAR REG
+lowe ee i a oh Ao oe “er Secs %Pass Secs %Pass Secs %Pass Secs %Pass
+Upper lowa University (1893) 15 34 14 20 47.1% 686 30.8 6 66.7% 6 667% 14 28.6% 8 50.0%
+Wartburg College (1896) 24 63 32 31 54.0% 731 24.0 16 50.0% 14 643% 19 57.9% 14 42.9%
+Kansas
+Benedictine College (10256) 27 72 50 22 62.5% 75.4 23.7 23 609% 13 76.9% 20 55.0% 16 62.5%
+Emporia State University (1927) 24 50 29 21 66.0% 77.0 31.8 9 77.8% 15 73.3% 15 46.7% 11 72.7%
+Fort Hays State University (1915) 22 37 19 18 37.8% 69.4 26.1 13 38.5% 3 66.7% 16 31.3% 5 40.0%
+Kansas State University (1928) 103 256 174 82 70.7% 78.1 26.3 69 63.8% 48 896% 73 69.9% 66 65.2%
+MidAmerica Nazarene University (7032) 5 11 8 3 45.5% 67.1 27.0 1 0.0% 3 667% 4 25.0% 3 66.7%
+Pittsburg State University (1926) 16 31 16 15 41.9% 69.2 31.6 12 50.0% 6 50.0% 7 14.3% 6 50.0%
+Tabor College (1946) 5 11 5 6 18.2% 67.1 28.6 2 0.0% 2 50.0% 6 16.7% 1 0.0%
+University of Kansas - Main Campus (1948) 170 540 413 127 722% 788 25.0 134 70.1% 124 79.8% 150 66.7% 132 73.5%
+- Washburn University (1949) 20 47 31 16 596% 73.5 26.8 12 66.7% 8 62.5% 17 41.2% 10 80.0%
+© Wichita State University (1950) 67 132 81 51 485% 71.2 29.2 36 50.0% 30 56.7% 42 38.1% 24 54.2%
+Kentucky
+Asbury University (1952) 13 32 26 6 59.4% 745 24.8 10 60.0% 5 60.0% 11 54.5% 6 66.7%
+Bellarmine University (1954) 33 73 40 33 548% 723 26.6 16 37.5% 11 72.7% 22 «68.2% 24 45.8%
+Berea College (1955) 5 13 6 7 69.2% 77.7 28.2 2 100.0% 3 100.0% 6 33.3% 2 100.0%
+Campbellsville University (1959) 5 11 7 4 18.2% 63.3 27.9 4 0.0% 1 0.0% 5 20.0% 1 100.0%
+Centre College (1961) 5 12 5 7 58.3% 746 27.9 2 50.0% 1 100.0% 6 50.0% 3 66.7%
+Eastern Kentucky University (1963) 32 87 49 38 50.6% 73.1 30.6 21 47.6% 21 66.7% 34 38.2% 11 63.6%
+Georgetown College (1964) 5 13 12 1 76.9% 79.1 23.4 4 75.0% 2 50.0% 4 75.0% 3 100.0%
+Kentucky Wesleyan College (1969) 7 14 10 4 35.7% 63.2 24.8 2 50.0% 2 100.0% 6 16.7% 4 25.0%
+Morehead State University (1976) 10 21 7 14 42.9% 69.9 30.4 3 33.3% 5 0.0% 7 57.1% 6 66.7%
+Murray State University (1977) 40 89 53 36 43.8% 70.0 27.1 25 52.0% 15 60.0% 29 31.0% 20 40.0%
+Northern Kentucky University (9275) 55 131 71 60 48.9% 72.3 28.1 38 44.7% 30 50.0% 33 48.5% 30 53.3%
+Sullivan University (4619) 10 17 5 12 176% 58.2 37.7 3 0.0% 4 25.0% 7 0.0% 3 66.7%
+Thomas More College (2001) 9 21 9 12 66.7% 75.9 29.5 6 66.7% 8 75.0% 2 0.0% 5 80.0%
+Transylvania University (1987) 29 65 42 23 52.3% 74.4 24.7 17 529% 22 «54.5% 16 37.5% 10 70.0%
