@@ -90,28 +90,71 @@ def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
     df = df.copy()
 
+    # Standardize missing values
+    df = df.fillna("")
+
+    # Keep only rows that look like real extracted rows
+    if "School / University" in df.columns:
+        df["School / University"] = df["School / University"].astype(str).str.strip()
+        df = df[df["School / University"] != ""]
+
+    # Keep only rows with a usable pass rate signal
     if "Pass Rate" in df.columns:
-        df = df[df["Pass Rate"].astype(str).str.contains("%", na=False)]
+        df["Pass Rate"] = df["Pass Rate"].astype(str).apply(normalize_percent)
+        df = df[df["Pass Rate"].str.contains("%", na=False)]
 
+    # Remove weak rows with too few parsed values
     if "Value Count" in df.columns:
-        df = df[df["Value Count"].fillna(0).astype(int) >= 5]
+        df["Value Count"] = pd.to_numeric(df["Value Count"], errors="coerce").fillna(0).astype(int)
+        df = df[df["Value Count"] >= 5]
 
+    # Normalize count columns
     for col in ["Candidates Total", "Candidates First-Time", "Candidates Repeat"]:
         if col in df.columns:
-            df[col] = df[col].apply(normalize_integer)
+            df[col] = df[col].astype(str).apply(normalize_integer)
 
-    if "Pass Rate" in df.columns:
-        df["Pass Rate"] = df["Pass Rate"].apply(normalize_percent)
-
+    # Normalize score/age style columns
     for col in ["Average Age", "AUD Score"]:
         if col in df.columns:
-            df[col] = df[col].apply(normalize_decimal)
+            df[col] = df[col].astype(str).apply(normalize_decimal)
 
-    if "Review Flag" in df.columns:
-        df["Review Flag"] = df["Review Flag"].fillna("manual_review")
+    # Normalize pass-rate-style columns
+    for col in ["Pass Rate", "AUD Pass Rate"]:
+        if col in df.columns:
+            df[col] = df[col].astype(str).apply(normalize_percent)
+
+    # Add an explicit review indicator
+    if "Review Flag" not in df.columns:
+        df["Review Flag"] = "manual_review"
+    else:
+        df["Review Flag"] = df["Review Flag"].astype(str).str.strip()
+        df["Review Flag"] = df["Review Flag"].replace("", "manual_review")
+
+    df["Needs Review"] = True
+
+    # Optional: reorder columns if they exist
+    preferred_order = [
+        "School / University",
+        "Candidates Total",
+        "Candidates First-Time",
+        "Candidates Repeat",
+        "Pass Rate",
+        "Average Age",
+        "AUD Score",
+        "AUD Pass Rate",
+        "Value Count",
+        "Source Page",
+        "Confidence",
+        "Review Flag",
+        "Needs Review",
+        "Raw OCR Line",
+    ]
+
+    existing_cols = [col for col in preferred_order if col in df.columns]
+    remaining_cols = [col for col in df.columns if col not in existing_cols]
+    df = df[existing_cols + remaining_cols]
 
     return df.reset_index(drop=True)
-
 
 def clean_excel_file(input_path: Path, output_path: Path, cleaner_func) -> None:
     df = pd.read_excel(input_path)
