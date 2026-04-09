@@ -1,31 +1,31 @@
 Appendix A-1: All Testing Events
 AUD BEC FAR REG
-Florida ci ra go ge hoe —— “iar Secs %Pass Secs %Pass Secs ‘%Pass Secs %Pass
-Florida Atlantic University (1481) 378 828 441 387 656% «= 73.6 31.0 226 652.7% 173 68.2% 268 451% 161 634%
-Florida Gulf Coast University (32553) 73 158 93 65 60.1% 741 29.0 41 81.2% 23 «82.6% 62 50.0% 32 75.0%
+Florida ae tt grat a Ave — — oer’ Secs %Pass Secs %Pass Secs ‘%Pass Secs %Pass
+Florida Atlantic University (1481) 378 628 444 387 = 85.6% «=—s_s 73.6 31.0 226 52.7% 173 68.2% 268 45.1% 161 63.4%
+Florida Gulf Coast University (32553) 73 158 93 65 60.1% 74.1 29.0 41 51.2% 23 «82.6% 62 500% 32 = 75.0%
 Florida Institute of Technology (1469) 16 27 15 12 25.9% 666 35.2 4 75.0% 6 16.7% 13 0.0% 4 75.0%
 Florida International University (9635) 272 589 295 294 52.5% 72.9 30.2 150 54.7% 134 56.7% 186 42.5% 119 605%
-Florida Southern College (1488) 26 56 33 23 50.0% 72.2 27.5 14 50.0% 9 55.6% 19 36.8% 14 64.3%
-Florida State University (1489) 286 651 441 210 67.3% 77.0 27.6 175 674% 134 80.6% 214 = 56.1% 128 71.9%
-Hodges University (30375) 7 18 5 13 33.3% 68,0 29.3 4 0.0% 3 66.7% 7 28.6% 4 50.0%
-Indian River State College (1493) 7 14 9 5 64.3% 745 31.0 4 75.0% 3 66.7% 7 57.1% 0 0.0%
+Florida Southern College (1488) 26 56 33 23 50.0% 72.2 27.5 14 50.0% 9 55.6% 19 36.8% 14 643%
+Florida State University (1489) 286 651 441 210 67.3% 77.0 27.6 175 674% 134 806% 214 56.1% 128 71.9%
+Hodges University (30375) 7 18 5 13 33.3% 68.0 29.3 4 0.0% 3 66.7% 7 28.6% 4 50.0%
+Indian River State College (1493) 7 14 ) 5 64.3% 74.5 31.0 4 75.0% 3 66.7% 7 57.1% 0 0.0%
 Jacksonville University (1495) 12 21 16 5 57.1% 74.2 29.0 3 66.7% 3 66.7% 10 50.0% 5 60.0%
 Miami Dade College (1506) 6 16 7 g 43.8% 71.2 35.2 2 50.0% 8 25.0% 3 66.7% 3 66.7%
-Nova Southeastern University (1509) 126 296 126 170 37.5% 69.5 35.0 71 36.6% 83 33.7% 79 36.7% 63 444%
-Paim Beach Atlantic University (8849) 5 9 7 2 77.8% 76.3 29.0 4 50.0% 3 100.0% 1 100.0% 1 100.0%
-g Saint Leo University (1526) 47 110 43 67 32.7% 68.0 33.7 30 40.0% 24 = 33.3% 40 17.5% 16 56.3%
-Southeastern University (1521) 15 33 20 13 606% 717 24.9 11 63.6% 5 100.0% 10 50.0% 7 42.9%
-St. Thomas University (1468) 19 35 17 18 34.38% 625 30.9 11 45.5% 6 33.3% 15 20.0% 3 66.7%
-Stetson University (1531) 36 87 54 33 60.9% 743 29.4 28 60.7% 23 60.9% 18 66.7% 18 55.6%
+Nova Southeastem University (1509) 126 296 126 170 37.5% 69.5 35.0 71 36.6% 83 33.7% 79 36.7% 63 444%
+Palm Beach Atlantic University (8849) 5 9 7 2 77.8% 763 29.0 4 50.0% 3 100.0% 1 100.0% 1 100.0%
+a Saint Leo University (1526) 47 110 43 67 32.7% 68.0 33.7 30 40.0% 24 33.3% 40 17.5% 16 56.3%
+Southeastern University (1521) 15 33 20 13 606% 71.7 24.9 11 63.6% 5 100.0% 10 50.0% 7 42.9%
+St. Thomas University (1468) 19 35 17 18 34.3% 62.5 30.9 11 45.5% 6 33.3% 15 20.0% 3 66.7%
+Stetson University (1531) 36 87 54 33 60.9% 743 29.4 28 660.7% 23 60.9% 18 66.7% 18 55.6%
 Univ of South Florida - Sarasota-Manatee (667058) 18 39 23 16 53.8% 736 30.8 10 40.0% 6 83.3% 14 42.9% 9 66.7%
-Univ of South Florida - St. Petersburg (9016) 56 133 87 46 60.9% 75.3 31.9 29 «65.5% 37 54.1% 30 56.7% 37 67.6%
+Univ of South Florida - St. Petersburg (9016) 56 133 87 46 60.9% 75.3 31.9 29 65.5% 37 84.1% 30 56.7% 37 67.6%
 University of Central Florida (3954) 300 672 418 254 641% 75.9 28.7 193 60.6% 132 71.2% 197 58.4% 150 70.0%
-University of Florida (1535) 247 592 472 120 829% 6826 26.3 137 73.7% 140 921% 165 81.2% 150 84.7%
-University of Miami (1536) 150 351 230 121 644% 755 26.2 102 55.9% 59 81.4% 113 57.5% 77 = 72.7%
+University of Florida (1535) 247 592 472 120 82.9% 82.6 26.3 137 73.7% 140 92.1% 165 81.2% 150 84.7%
+University of Miami (1536) 150 351 230 121 64.4% 75.5 26.2 102 55.9% 59 = 81.4% 113 57.5% 77. —s- 72.7%
 University of North Florida (9841) 115 252 151 101 603% 746 29.1 65 55.4% 51 74.5% 78 53.8% 58 62.1%
 University of South Florida (1537) 219 504 310 194 605% 747 28.8 152 53.9% 95 77.9% 145 50.3% 112 67.9%
-University of Tampa (1538) a8 188 97 91 50.0% 726 26.0 51 49.0% 44 65.9% 43 46.5% 50 40.0%
+University of Tampa (1538) 88 188 97 91 50.0% 726 26.0 51 49.0% 44 65.9% 43 46.5% 50 40.0%
 University of West Florida (3955) 74 177 116 61 62.7% 743 30.6 48 62.5% 43 74.4% 49 53.1% 37 62.2%
-Webber International University (1540) 6 15 6 9 46.7% 70.5 28.7 6 33.3% 4 50.0% 3 33.3% 2 100.0%
+Webber International University (1540) 6 15 6 ) 46.7% 70.5 28.7 6 33.3% 4  §0.0% 3 33.3% 2 100.0%
 Georgia
-Berry College (1554) 12 27 19 8 59.38% 70.7 28.8 8 50.0% 4 100.0% 12 41.7% 3 100.0%
+Berry College (1554) 12 27 19 8 59.3% 70.7 28.8 8 50.0% 4 100.0% 12 41.7% 3 100.0%

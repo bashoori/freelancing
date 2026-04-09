@@ -9,8 +9,7 @@ OUTPUT_DIR = Path("output")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 STATE_PAGES = {1, 2}
-UNIVERSITY_START_PAGE = 3
-TOTAL_PAGES = 10
+TOTAL_PAGES = 2
 
 KNOWN_JURISDICTIONS = [
     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
@@ -39,14 +38,48 @@ def year_from_filename(filename: str) -> str:
 
 
 def is_number_like(value: str) -> bool:
-    value = str(value).strip().replace(",", "").replace(".", "")
+    value = value.strip().replace(",", "").replace(".", "")
     return value.isdigit()
+
+
+def normalize_integer(value: str) -> str:
+    value = value.strip()
+
+    # 2.191 -> 2,191
+    if re.fullmatch(r"\d+\.\d{3}", value):
+        return value.replace(".", ",")
+
+    return value
+
+
+def normalize_decimal(value: str) -> str:
+    value = value.strip()
+
+    # 295 -> 29.5
+    if re.fullmatch(r"\d{3}", value):
+        return f"{value[:2]}.{value[2]}"
+
+    return value
+
+
+def normalize_percent(value: str) -> str:
+    value = value.strip()
+
+    # 969% -> 96.9%
+    if re.fullmatch(r"\d{3}%", value):
+        return f"{value[:2]}.{value[2]}%"
+
+    # 713% is probably 71.3%
+    if re.fullmatch(r"\d{3}%", value):
+        return f"{value[:2]}.{value[2]}%"
+
+    return value
 
 
 def crop_table_area(image):
     width, height = image.size
     left = int(width * 0.03)
-    top = int(height * 0.08)
+    top = int(height * 0.10)
     right = int(width * 0.98)
     bottom = int(height * 0.98)
     return image.crop((left, top, right, bottom))
@@ -63,12 +96,6 @@ def render_single_page(pdf_path: Path, page_num: int):
     return images[0] if images else None
 
 
-def rotate_if_needed(image, page_num: int):
-    if page_num >= UNIVERSITY_START_PAGE:
-        return image.rotate(90, expand=True)
-    return image
-
-
 def ocr_page(image) -> str:
     return pytesseract.image_to_string(image, config="--psm 6")
 
@@ -77,36 +104,6 @@ def save_debug_text(page_num: int, text: str) -> None:
     debug_dir = OUTPUT_DIR / "debug_text"
     debug_dir.mkdir(exist_ok=True)
     (debug_dir / f"page_{page_num}.txt").write_text(text, encoding="utf-8")
-
-
-def normalize_integer(value: str) -> str:
-    value = str(value).strip()
-
-    if re.fullmatch(r"\d+\.\d{3}", value):
-        return value.replace(".", ",")
-
-    return value
-
-
-def normalize_decimal(value: str) -> str:
-    value = str(value).strip()
-
-    if re.fullmatch(r"\d{3}", value):
-        return f"{value[:2]}.{value[2]}"
-
-    return value
-
-
-def normalize_percent(value: str) -> str:
-    value = str(value).strip()
-
-    if re.fullmatch(r"\d+\.\d%", value):
-        return value
-
-    if re.fullmatch(r"\d{3}%", value):
-        return f"{value[:2]}.{value[2]}%"
-
-    return value
 
 
 def recover_jurisdiction_name(raw_name: str) -> str:
@@ -159,21 +156,32 @@ def recover_jurisdiction_name(raw_name: str) -> str:
     if len(suffix_matches) == 1:
         return suffix_matches[0]
 
+    contains_matches = [
+        name for name in KNOWN_JURISDICTIONS
+        if raw_lower in name.lower()
+    ]
+    if len(contains_matches) == 1:
+        return contains_matches[0]
+
     return raw_name.title()
 
 
-def extract_values_after_name(parts: list[str]) -> list[str]:
+def extract_values_after_name(parts: list[str], percent_index: int) -> list[str]:
     values = []
     i = 0
 
+    # skip name tokens
     while i < len(parts) and not is_number_like(parts[i]):
         i += 1
 
     while i < len(parts):
         token = parts[i]
 
+        # merge split decimals like 29 4 -> 29.4
         if (
             i + 1 < len(parts)
+            and is_number_like(parts[i])
+            and is_number_like(parts[i + 1])
             and re.fullmatch(r"\d{2}", parts[i])
             and re.fullmatch(r"\d", parts[i + 1])
         ):
@@ -181,14 +189,21 @@ def extract_values_after_name(parts: list[str]) -> list[str]:
             i += 2
             continue
 
-        values.append(token)
+        if is_number_like(token) or "%" in token:
+            values.append(token)
+
         i += 1
 
     return values
 
 
-def row_needs_review_state(row: dict) -> str:
+def row_needs_review(row: dict) -> str:
     issues = []
+
+    for field in ["Average Score", "Average Age", "Pass Rate"]:
+        value = str(row.get(field, ""))
+        if re.search(r"[A-Za-z]", value):
+            issues.append(f"bad_{field.lower().replace(' ', '_')}")
 
     if row["Jurisdiction"] not in KNOWN_JURISDICTIONS:
         issues.append("uncertain_jurisdiction")
@@ -196,12 +211,7 @@ def row_needs_review_state(row: dict) -> str:
     if not str(row["Pass Rate"]).endswith("%"):
         issues.append("invalid_pass_rate")
 
-    for field in ["Average Score", "Average Age"]:
-        value = str(row.get(field, ""))
-        if not re.fullmatch(r"\d+\.\d", value):
-            issues.append(f"check_{field.lower().replace(' ', '_')}")
-
-    return ";".join(issues)
+    return ";".join(issues) if issues else ""
 
 
 def parse_state_lines(text: str, page_num: int) -> list[dict]:
@@ -209,29 +219,42 @@ def parse_state_lines(text: str, page_num: int) -> list[dict]:
     lines = [clean_text(line) for line in text.splitlines() if clean_text(line)]
 
     for line in lines:
-        lower = line.lower()
+        line_lower = line.lower()
 
         if "%" not in line:
             continue
 
-        if "jurisdiction" in lower or "summary" in lower:
+        if "jurisdiction" in line_lower or "summary" in line_lower:
             continue
 
         parts = line.split()
         if not parts:
             continue
 
-        jurisdiction_parts = []
-        for part in parts:
-            if is_number_like(part):
+        percent_index = None
+        for i, part in enumerate(parts):
+            if "%" in part:
+                percent_index = i
                 break
-            jurisdiction_parts.append(part)
+
+        if percent_index is None:
+            continue
+
+        if percent_index < 5:
+            continue
+
+        jurisdiction_parts = []
+        for p in parts:
+            if is_number_like(p):
+                break
+            jurisdiction_parts.append(p)
 
         jurisdiction_raw = " ".join(jurisdiction_parts).strip()
         if not jurisdiction_raw:
             continue
 
-        values = extract_values_after_name(parts)
+        values = extract_values_after_name(parts, percent_index)
+
         if len(values) < 7:
             continue
 
@@ -248,90 +271,20 @@ def parse_state_lines(text: str, page_num: int) -> list[dict]:
             "Confidence": "OCR",
         }
 
-        row["Review Flag"] = row_needs_review_state(row)
+        row["Review Flag"] = row_needs_review(row)
         rows.append(row)
 
     return rows
 
 
-def row_needs_review_university(row: dict) -> str:
-    issues = ["manual_review"]
-
-    if not str(row.get("Pass Rate", "")).endswith("%"):
-        issues.append("invalid_pass_rate")
-
-    if not row.get("School / University"):
-        issues.append("missing_school_name")
-
-    return ";".join(issues)
-
-
-def parse_university_lines(text: str, page_num: int) -> list[dict]:
-    rows = []
-    lines = [clean_text(line) for line in text.splitlines() if clean_text(line)]
-
-    for line in lines:
-        lower = line.lower()
-
-        if "%" not in line:
-            continue
-
-        if "appendix" in lower or "all testing events" in lower:
-            continue
-
-        parts = line.split()
-        if len(parts) < 8:
-            continue
-
-        name_parts = []
-        idx = 0
-        while idx < len(parts) and not is_number_like(parts[idx]):
-            name_parts.append(parts[idx])
-            idx += 1
-
-        school_name = " ".join(name_parts).strip()
-        if not school_name:
-            continue
-
-        values = extract_values_after_name(parts)
-
-        row = {
-            "School / University": school_name,
-            "Raw OCR Line": line,
-            "Value Count": len(values),
-            "Source Page": page_num,
-            "Confidence": "OCR",
-            "Candidates Total": "",
-            "Candidates First-Time": "",
-            "Candidates Repeat": "",
-            "Pass Rate": "",
-            "Average Age": "",
-            "AUD Score": "",
-            "AUD Pass Rate": "",
-            "Review Flag": "",
-        }
-
-        if len(values) >= 7:
-            row["Candidates Total"] = normalize_integer(values[0])
-            row["Candidates First-Time"] = normalize_integer(values[1])
-            row["Candidates Repeat"] = normalize_integer(values[2])
-            row["Pass Rate"] = normalize_percent(values[3])
-            row["Average Age"] = normalize_decimal(values[4])
-            row["AUD Score"] = normalize_decimal(values[5])
-            row["AUD Pass Rate"] = normalize_percent(values[6])
-        else:
-            row["Review Flag"] = "insufficient_values"
-
-        row["Review Flag"] = row_needs_review_university(row) if not row["Review Flag"] else f'{row["Review Flag"]};manual_review'
-        rows.append(row)
-
-    return rows
-
-
-def deduplicate_rows(df: pd.DataFrame, subset_cols: list[str]) -> pd.DataFrame:
+def deduplicate_rows(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df
-    return df.drop_duplicates(subset=subset_cols, keep="first").reset_index(drop=True)
+
+    return df.drop_duplicates(
+        subset=["Jurisdiction", "Candidates Total", "Sections Total", "Sections FT", "Sections RE"],
+        keep="first"
+    ).reset_index(drop=True)
 
 
 def main():
@@ -341,9 +294,11 @@ def main():
 
     year = year_from_filename(INPUT_FILE.name)
     state_rows = []
-    university_rows = []
 
     for page_num in range(1, TOTAL_PAGES + 1):
+        if page_num not in STATE_PAGES:
+            continue
+
         print(f"Rendering page {page_num}...")
         image = render_single_page(INPUT_FILE, page_num)
 
@@ -351,47 +306,29 @@ def main():
             print(f"  Could not render page {page_num}")
             continue
 
-        image = rotate_if_needed(image, page_num)
         image = crop_table_area(image)
 
         print(f"  OCR page {page_num}...")
         text = ocr_page(image)
         save_debug_text(page_num, text)
 
-        if page_num in STATE_PAGES:
-            parsed_rows = parse_state_lines(text, page_num)
-            state_rows.extend(parsed_rows)
-            print(f"  State rows found: {len(parsed_rows)}")
-        else:
-            parsed_rows = parse_university_lines(text, page_num)
-            university_rows.extend(parsed_rows)
-            print(f"  University rows found: {len(parsed_rows)}")
+        parsed_rows = parse_state_lines(text, page_num)
+        state_rows.extend(parsed_rows)
+        print(f"  State rows found: {len(parsed_rows)}")
 
         del image
 
     state_df = pd.DataFrame(state_rows)
-    university_df = pd.DataFrame(university_rows)
-
-    state_df = deduplicate_rows(
-        state_df,
-        ["Jurisdiction", "Candidates Total", "Sections Total", "Sections FT", "Sections RE"]
-    )
-    university_df = deduplicate_rows(
-        university_df,
-        ["School / University", "Raw OCR Line", "Source Page"]
-    )
+    state_df = deduplicate_rows(state_df)
 
     state_output = OUTPUT_DIR / f"State_Level_Candidates_{year}.xlsx"
-    university_output = OUTPUT_DIR / f"University_Level_Candidates_{year}.xlsx"
-
     state_df.to_excel(state_output, index=False)
-    university_df.to_excel(university_output, index=False)
 
     print()
     print(f"Saved: {state_output}")
-    print(f"Saved: {university_output}")
     print(f"State rows: {len(state_df)}")
-    print(f"University rows: {len(university_df)}")
+    flagged = state_df['Review Flag'].astype(bool).sum() if not state_df.empty else 0
+    print(f"Rows needing review: {flagged}")
 
 
 if __name__ == "__main__":

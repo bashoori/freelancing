@@ -1,31 +1,29 @@
-Appendix A-1: All Testing Events
-AUD BEC FAR REG
-a oe) a = coun pyr ‘J pear oh ered “ree “ee Secs %Pass Secs %Pass Secs %Pass Secs %Pass
-Sacred Heart University (1403) 102 221 126 95 37.1% 66.0 25.6 47 38.3% 49 57.1% 78 23.1% 47 38.3%
-Southern Connecticut State Univ (1406) 34 69 31 38 33.3% 640 29.2 17 - 29.4% 13 61.5% 24 20.8% 15 33.3%
-University of Bridgeport (1416) 13 35 14 21 37.1% 67.4 35.8 7 14.3% 9 667% 12 16.7% 7 571%
-University of Connecticut (1417) 265 595 404 191 704% 778 25.3 159 66.7% 127 80.3% 172 65.1% 137 72.3%
-University of Hartford (1422) 30 77 38 39 416% 693 32.3 20 30.0% 19 526% 25 28.0% 13 69.2%
-University of New Haven (1397) 26 51 28 23 39.2% 684 28.3 6 66.7% 11 45.5% 21 38.1% 13. 23.1%
-Western Connecticut State Univ (1380) 39 82 38 44 43.9% 681 30.2 20 35.0% 16 813% 30 26.7% 16 50.0%
+ne wi as ee gor T geno thy 0 —e “Geer Secs %Pass Secs %Pass Secs %Pass Secs %Pass
+Sacred Heart University (1403) 102 221 126 95 37.1% 66.0 25.6 47 38.3% 49 571% 78 23.1% 47 38.3%
+Southern Connecticut State Univ (1406) 34 69 31 38 = (33.3% ~=—s« 64.0 29.2 17 29.4% 13 61.5% 24 = 20.8% 15 33.3%
+University of Bridgeport (1416) 13 35 14 21 37.1% 67.4 35.8 7 14.3% 9 66.7% 12 16.7% 7 57.1%
+University of Connecticut (1417) 265 595 404 191 70.4% 778 25.3 159 66.7% 127 80.3% 172 65.1% 137 12.3%
+University of Hartford (1422) 30 77 38 39 41.6% 69.3 32.3 20 30.0% 19 52.6% 25 28.0% 13 69 2%
+University of New Haven (1397) 26 51 28 23 39.2% 68.4 28.3 6 66.7% 11 45.5% 21 38.1% 13 23.1%
+Western Connecticut State Univ (1380) 39 82 38 44 43.9% 68.4 30.2 20 35.0% 16 81.3% 30 26.7% 16 590.0%
 Delaware
 Delaware State University (1428) 15 24 16 8 41.7% 65.1 26.9 8 25.0% 4 100.0% 7 28 6% 5 40.0%
-Goldey-Beacom College (1429) 16 32 18 14 56.3% 707 34.2 8 50.0% 9 444% 8 50.0% 7 85.7%
-University of Delaware (1431) 201 480 289 191 61.3% 75.5 25.1 129 65.1% 79 = =©81.0% 148 52.7% 124 548%
-‘ak Wilmington University (7948) 23 39 21 18 46.2% 64.7 32.2 8 37.5% 10 70.0% 12 33.3% 9 44.4%
-8 District of Columbia
-American University (1434) 56 143 76 67 59.4% 75.5 28.8 40 50.0% 35 62.9% 33 63.6% 35 629%
-George Washington University (1444) 101 235 148 87 63.4% 75.7 27.9 67 58.2% 46 71.7% 64 625% 58 63.8%
-Georgetown University (1445) 39 94 79 15 86.2% 85.6 26.9 29 - 72.4% 22 100.0% 23: 87.0% 20 90.0%
-Howard University (1448) 29 63 20 43 33.3% 67.2 31.4 21 19.0% 16 43.8% 17 35.3% 9 444%
-Strayer University (1459) 68 151 52 99 25.2% 61.9 40.3 45 20.0% 34 20.6% 38 28.9% 34 - 32.4%
-The Catholic University of America (1437) 32 76 42 34 26.3% 643 25.5 18 444% 15 40.0% 27 74% 16 25.0%
-Univ of the District of Columbia (1441) 13 25 10 15 40.0% 67.8 34.2 6 33.3% 4 75.0% 11 27.3% 4 50.0%
+Goldey-Beacom College (1429) 16 32 18 14 56.3% 70.7 34.2 8 50.0% 9g 44 4% 8 50.0% 7 85.7%
+University of Delaware (1431) 201 480 289 191 61.3% 75.5 25.1 129 65.1% 79 81.0% 148 52.7% 124 54.8%
+as Wilmington University (7948) 23 39 21 18 46.2% 64.7 32.2 8 37.5% 10 70.0% 12 33.3% 9 44 4%
+N District of Columbia
+American University (1434) 56 143 76 67 59.4% 75.5 28.8 40 50.0% 35 62.9% 33 63.6% 35 62.9%
+George Washington University (1444) 101 235 148 87 63.4% 75.7 27.9 67 58.2% 46 71.7% 64 62.5% 58 63.8%
+Georgetown University (1445) 39 94 79 15 86.2% 85.6 26.9 29 72.4% 22 100.0% 23 87.0% 20 90.0%
+Howard University (1448) 29 63 20 43 33.3% 67.2 31.1 21 19.0% 16 43.8% 17 35.3% 9 44 4%
+Strayer University (1459) 68 151 52 99 25.2% 61.9 40.3 45 20.0% 34 20.6% 38 28.9% 34 32.4%
+The Catholic University of America (1437) 32 76 42 34 26.3% 64.3 25.5 18 44.4% 15 40.0% 27 74% 16 25.0%
+Univ of the District of Columbia (1441) 13 25 10 15 40.0% 67.8 34.2 6 33.3% a 75.0% 11 27.3% 4 50.0%
 Florida
-Barry University (1466) 12 25 8 17 32.0% 65.1 35.1 5 40.0% 5 40.0% 13. 23.1% 2 50.0%
-Bethune Cookman University (1467) 7 8 5 3 0.0% 43.4 36.5 3 0.0% 1 0.0% 4 0.0% 0 0.0%
+Barry University (1466) 12 25 8 17 32.0% 65.1 35.1 5 40.0% 5 40.0% 13 23.1% 2 50 0%
+Bethune Cookman University (1 467) 7 8 5 3 0.0% 43.4 36.5 3 0.0% 1 0.0% + 0.0% 0 00%
 Broward College (1500) 6 12 11 1 66.7% 72.0 24.3 4 75.0% 3 66.7% 3 66.7% 2 50.0%
 DeVry University - Miramar Campus (666196) 12 28 12 16 42.9% 70.1 35.7 7 57.1% 4 25.0% 9 22.2% 8 62.5%
-DeVry University - Orlando Campus (666112) 8 17 7 10 52.9% 76.9 44.5 4 75.0% 4 50.0% 4 25.0% 5 60.0%
-Flagler College (7893) 36 73 43 30 521% 73.1 30.0 19 42.1% 20 55.0% 15 46.7% 19 63.2%
-Florida A&M University (1480) 14 27 10 17 33.38% 63.2 31.7 8 37.5% 7 42.9% 7 28.6% 5 20.0%
+DeVry University - Orlando Campus (666112) u 17 7 10 52.9% 76.9 44.5 4 75.0% 4 50.0% 4 25.0% 5 60.0%
+Flagler College (7893) 36 73 43 30 §2.1% 73.1 30.0 19 42.1% 20 55.0% 15 46.7% 19 63.2%
+Florida A&M University (1480) 14 27 10 17 33.3% 63.2 31.7 8 37.5% 7 42.9% 7 28.6% 5 20.0%
