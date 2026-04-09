@@ -12,12 +12,9 @@ def run_pipeline():
 
     print("Pipeline completed.")
     print("Output saved to: output/clean_contacts.csv")
-    print("\nSummary:")
+    print("Summary:")
     for key, value in summary.items():
         print(f"{key}: {value}")
-
-    print("\nPreview:")
-    print(clean_df.head())
 
 if __name__ == "__main__":
     run_pipeline()

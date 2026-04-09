@@ -1,0 +1,16 @@
+[
+  {"name": " John Smith ", "email": "JOHN@email.com", "phone": "123-456", "city": "Vancouver"},
+  {"name": "John Smith", "email": "john@email.com", "phone": "(123) 456", "city": "Vancouver"},
+  {"name": "Sarah Lee", "email": null, "phone": "778-999", "city": "Burnaby"},
+  {"name": "Ali Reza", "email": "ali@email.com", "phone": null, "city": "Coquitlam"},
+  {"name": "Mina Noor", "email": "mina@email.com", "phone": "604-888", "city": "Surrey"},
+  {"name": "mina noor", "email": "MINA@email.com", "phone": "604888", "city": " Surrey "},
+  {"name": "David Chen", "email": "david@email", "phone": "555-222", "city": "Richmond"},
+  {"name": "Emma White", "email": "emma@email.com", "phone": "", "city": "Vancouver"},
+  {"name": "Chris Black", "email": "  chris@email.com ", "phone": "604 777 1212", "city": "Burnaby"},
+  {"name": "", "email": "noname@email.com", "phone": "111-111", "city": "Unknown"},
+  {"name": "Lila Green", "email": "lila@email.com", "phone": "N/A", "city": null},
+  {"name": "Omid Farah", "email": "omid@email.com", "phone": "604-123-9999", "city": "Coquitlam"},
+  {"name": "Omid Farah", "email": "omid@email.com", "phone": "6041239999", "city": "Coquitlam"},
+  {"name": "Test User", "email": "invalid-email-format", "phone": "333-444", "city": "Burnaby"}
+]

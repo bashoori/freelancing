@@ -1,0 +1,7 @@
+[
+  {"name": "John Smith", "email": "john@email.com", "phone": "123-456", "city": "Vancouver"},
+  {"name": "John Smith", "email": "john@email.com", "phone": "123-456", "city": "Vancouver"},
+  {"name": "Sarah Lee", "email": null, "phone": "778-999", "city": "Burnaby"},
+  {"name": "Ali Reza", "email": "ali@email.com", "phone": null, "city": "Coquitlam"},
+  {"name": "Mina Noor", "email": "mina@email.com", "phone": "604-888", "city": "Surrey"}
+]
