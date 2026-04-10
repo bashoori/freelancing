@@ -6,4 +6,21 @@ logging.basicConfig(
     format="%(asctime)s - %(message)s"
 )
 
-logging.info(f"Loaded {len(jobs)} jobs")
+logging.info(f"Loaded {len(jobs)} jobs")2026-04-10 22:47:49,422 | ERROR | Pipeline failed.
+Traceback (most recent call last):
+  File "/workspaces/freelancing/2026/april/data_ingestion_reporting/src/pipeline.py", line 192, in run_pipeline
+    records_loaded = load(jobs)
+                     ^^^^^^^^^^
+  File "/workspaces/freelancing/2026/april/data_ingestion_reporting/src/pipeline.py", line 110, in load
+    conn = get_connection()
+           ^^^^^^^^^^^^^^^^
+  File "/workspaces/freelancing/2026/april/data_ingestion_reporting/src/pipeline.py", line 97, in get_connection
+    return psycopg2.connect(
+           ^^^^^^^^^^^^^^^^^
+  File "/workspaces/freelancing/2026/april/data_ingestion_reporting/venv/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+2026-04-10 22:48:32,900 | INFO | Pipeline completed successfully. Inserted 96 jobs.
