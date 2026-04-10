@@ -14,14 +14,18 @@ KNOWN_JURISDICTIONS = [
     "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Puerto Rico",
     "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
     "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin",
-    "Wyoming"
+    "Wyoming",
 ]
 
 
-def normalize_integer(value: str) -> str:
-    value = str(value).strip()
+def normalize_whitespace(value: str) -> str:
+    return re.sub(r"\s+", " ", str(value).strip())
 
-    # 2.191 -> 2,191
+
+def normalize_integer(value: str) -> str:
+    value = normalize_whitespace(value)
+
+    # OCR issue: 2.191 -> 2,191
     if re.fullmatch(r"\d+\.\d{3}", value):
         value = value.replace(".", ",")
 
@@ -29,8 +33,7 @@ def normalize_integer(value: str) -> str:
 
 
 def normalize_decimal(value: str) -> str:
-    value = str(value).strip()
-    value = re.sub(r"\s+", " ", value)
+    value = normalize_whitespace(value)
 
     # 295 -> 29.5
     if re.fullmatch(r"\d{3}", value):
@@ -41,13 +44,16 @@ def normalize_decimal(value: str) -> str:
         left, right = value.split()
         return f"{left}.{right}"
 
-    # keep only digits and decimal point
+    # 37. 5 -> 37.5
+    if re.fullmatch(r"\d+\.\s\d", value):
+        left, right = value.split()
+        return f"{left}{right}"
+
     return re.sub(r"[^\d.]", "", value)
 
 
 def normalize_percent(value: str) -> str:
-    value = str(value).strip()
-    value = re.sub(r"\s+", " ", value)
+    value = normalize_whitespace(value)
 
     # 69 5% -> 69.5%
     if re.fullmatch(r"\d{2}\s\d%", value):
@@ -55,7 +61,7 @@ def normalize_percent(value: str) -> str:
         return f"{left}.{right.replace('%', '')}%"
 
     # 37. 5% -> 37.5%
-    if re.fullmatch(r"\d{2}\.\s\d%", value):
+    if re.fullmatch(r"\d+\.\s\d%", value):
         left, right = value.split()
         return f"{left}{right}"
 
@@ -67,8 +73,7 @@ def normalize_percent(value: str) -> str:
 
 
 def normalize_school_name(value: str) -> str:
-    value = str(value).strip()
-    value = re.sub(r"\s+", " ", value)
+    value = normalize_whitespace(value)
 
     fixes = {
         "oe The University of West Alabama": "The University of West Alabama",
@@ -78,70 +83,96 @@ def normalize_school_name(value: str) -> str:
     return fixes.get(value, value)
 
 
-def clean_state_dataframe(df: pd.DataFrame) -> pd.DataFrame:
-    if df.empty:
-        return df
+def normalize_jurisdiction_name(value: str) -> str:
+    value = normalize_whitespace(value)
 
-    df = df.copy().fillna("")
+    fixes = {
+        "indiana": "Indiana",
+        "lowa": "Iowa",
+        "mississipp\\": "Mississippi",
+    }
 
-    if "Jurisdiction" in df.columns:
-        df["Jurisdiction"] = df["Jurisdiction"].astype(str).str.strip()
+    return fixes.get(value, value)
 
-        fixes = {
-            "indiana": "Indiana",
-            "lowa": "Iowa",
-            "mississipp\\": "Mississippi",
-        }
-        df["Jurisdiction"] = df["Jurisdiction"].replace(fixes)
 
-        df = df[df["Jurisdiction"].isin(KNOWN_JURISDICTIONS)]
-
-    for col in ["Candidates Total", "Sections Total", "Sections FT", "Sections RE"]:
-        if col in df.columns:
-            df[col] = df[col].apply(normalize_integer)
-
-    if "Pass Rate" in df.columns:
-        df["Pass Rate"] = df["Pass Rate"].apply(normalize_percent)
-
-    for col in ["Average Score", "Average Age"]:
-        if col in df.columns:
-            df[col] = df[col].apply(normalize_decimal)
-
+def ensure_review_flag_column(df: pd.DataFrame, default_value: str = "") -> pd.DataFrame:
     if "Review Flag" not in df.columns:
-        df["Review Flag"] = ""
+        df["Review Flag"] = default_value
     else:
-        df["Review Flag"] = df["Review Flag"].astype(str).fillna("").str.strip()
+        df["Review Flag"] = (
+            df["Review Flag"]
+            .fillna("")
+            .astype(str)
+            .str.strip()
+            .replace("", default_value)
+        )
+    return df
 
-    df["Needs Review"] = df["Review Flag"] != ""
 
-    preferred_order = [
-        "Jurisdiction",
-        "Candidates Total",
-        "Sections Total",
-        "Sections FT",
-        "Sections RE",
-        "Pass Rate",
-        "Average Score",
-        "Average Age",
-        "Source Page",
-        "Confidence",
-        "Review Flag",
-        "Needs Review",
-    ]
-
+def reorder_columns(df: pd.DataFrame, preferred_order: list[str]) -> pd.DataFrame:
     existing_cols = [col for col in preferred_order if col in df.columns]
     remaining_cols = [col for col in df.columns if col not in existing_cols]
-    df = df[existing_cols + remaining_cols]
+    return df[existing_cols + remaining_cols]
 
-    return df.reset_index(drop=True)
+
+def merge_flags(existing: str, generated: str, fallback: str = "") -> str:
+    existing = normalize_whitespace(existing) if str(existing).strip() else ""
+    generated = normalize_whitespace(generated) if str(generated).strip() else ""
+
+    if existing and generated:
+        return f"{existing};{generated}"
+    if existing:
+        return existing
+    if generated:
+        return generated
+    return fallback
+
+
+def build_state_review_flag(row: pd.Series) -> str:
+    issues = []
+
+    if row.get("Jurisdiction", "") not in KNOWN_JURISDICTIONS:
+        issues.append("uncertain_jurisdiction")
+
+    if "Pass Rate" in row.index:
+        val = str(row.get("Pass Rate", "")).strip()
+        if val and not val.endswith("%"):
+            issues.append("bad_pass_rate")
+
+    for field in ["Average Score", "Average Age"]:
+        if field in row.index:
+            val = str(row.get(field, "")).strip()
+            if val and not re.fullmatch(r"\d+\.\d", val):
+                issues.append(f"check_{field.lower().replace(' ', '_')}")
+
+    return ";".join(sorted(set(issues)))
 
 
 def build_university_review_flag(row: pd.Series) -> str:
     issues = []
 
-    school_name = str(row.get("School / University", "")).strip()
+    school_name = normalize_whitespace(row.get("School / University", ""))
     if not school_name:
         issues.append("missing_school_name")
+
+    numeric_fields = [
+        "Candidates Total",
+        "Sections Total",
+        "Sections FT",
+        "Sections RE",
+        "Candidates First-Time",
+        "Candidates Repeat",
+        "AUD Secs",
+        "BEC Secs",
+        "FAR Secs",
+        "REG Secs",
+    ]
+
+    for field in numeric_fields:
+        if field in row.index:
+            value = str(row.get(field, "")).replace(",", "").strip()
+            if value and not value.isdigit():
+                issues.append(f"bad_{field.lower().replace(' ', '_')}")
 
     percent_fields = [
         "Pass Rate",
@@ -169,7 +200,65 @@ def build_university_review_flag(row: pd.Series) -> str:
             if value and not re.fullmatch(r"\d+\.\d", value):
                 issues.append(f"check_{field.lower().replace(' ', '_')}")
 
+    if "Value Count" in row.index:
+        try:
+            if int(row.get("Value Count", 0)) < 10:
+                issues.append("low_confidence_row")
+        except Exception:
+            issues.append("low_confidence_row")
+
     return ";".join(sorted(set(issues)))
+
+
+def clean_state_dataframe(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df
+
+    df = df.copy().fillna("")
+
+    if "Jurisdiction" in df.columns:
+        df["Jurisdiction"] = df["Jurisdiction"].apply(normalize_jurisdiction_name)
+        df = df[df["Jurisdiction"].isin(KNOWN_JURISDICTIONS)]
+
+    integer_cols = ["Candidates Total", "Sections Total", "Sections FT", "Sections RE"]
+    for col in integer_cols:
+        if col in df.columns:
+            df[col] = df[col].apply(normalize_integer)
+
+    if "Pass Rate" in df.columns:
+        df["Pass Rate"] = df["Pass Rate"].apply(normalize_percent)
+
+    decimal_cols = ["Average Score", "Average Age"]
+    for col in decimal_cols:
+        if col in df.columns:
+            df[col] = df[col].apply(normalize_decimal)
+
+    df = ensure_review_flag_column(df, default_value="")
+    generated_flags = df.apply(build_state_review_flag, axis=1)
+
+    df["Review Flag"] = [
+        merge_flags(existing, generated)
+        for existing, generated in zip(df["Review Flag"], generated_flags)
+    ]
+
+    df["Needs Review"] = df["Review Flag"] != ""
+
+    preferred_order = [
+        "Jurisdiction",
+        "Candidates Total",
+        "Sections Total",
+        "Sections FT",
+        "Sections RE",
+        "Pass Rate",
+        "Average Score",
+        "Average Age",
+        "Source Page",
+        "Confidence",
+        "Review Flag",
+        "Needs Review",
+    ]
+
+    return reorder_columns(df.reset_index(drop=True), preferred_order)
 
 
 def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
@@ -186,8 +275,14 @@ def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         df["Raw OCR Line"] = df["Raw OCR Line"].astype(str).str.strip()
 
     if "Value Count" in df.columns:
-        df["Value Count"] = pd.to_numeric(df["Value Count"], errors="coerce").fillna(0).astype(int)
-        df = df[df["Value Count"] >= 7]
+        df["Value Count"] = (
+            pd.to_numeric(df["Value Count"], errors="coerce")
+            .fillna(0)
+            .astype(int)
+        )
+        df["Low Confidence Row"] = df["Value Count"] < 10
+    else:
+        df["Low Confidence Row"] = False
 
     integer_cols = [
         "Candidates Total",
@@ -201,7 +296,6 @@ def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         "FAR Secs",
         "REG Secs",
     ]
-
     for col in integer_cols:
         if col in df.columns:
             df[col] = df[col].apply(normalize_integer)
@@ -211,7 +305,6 @@ def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         "Average Age",
         "AUD Score",
     ]
-
     for col in decimal_cols:
         if col in df.columns:
             df[col] = df[col].apply(normalize_decimal)
@@ -223,39 +316,23 @@ def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         "FAR Pass Rate",
         "REG Pass Rate",
     ]
-
     for col in percent_cols:
         if col in df.columns:
             df[col] = df[col].apply(normalize_percent)
 
+    # Keep rows that still carry a usable overall pass-rate signal
     if "Pass Rate" in df.columns:
         df = df[df["Pass Rate"].astype(str).str.contains("%", na=False)]
 
-    if "Review Flag" not in df.columns:
-        df["Review Flag"] = ""
-    else:
-        df["Review Flag"] = df["Review Flag"].astype(str).fillna("").str.strip()
-
+    df = ensure_review_flag_column(df, default_value="")
     generated_flags = df.apply(build_university_review_flag, axis=1)
 
-    def merge_flags(existing: str, generated: str) -> str:
-        existing = str(existing).strip()
-        generated = str(generated).strip()
-
-        if existing and generated:
-            return f"{existing};{generated}"
-        if existing:
-            return existing
-        if generated:
-            return generated
-        return "manual_review"
-
     df["Review Flag"] = [
-        merge_flags(existing, generated)
+        merge_flags(existing, generated, fallback="manual_review")
         for existing, generated in zip(df["Review Flag"], generated_flags)
     ]
 
-    df["Needs Review"] = True
+    df["Needs Review"] = df["Review Flag"] != ""
 
     preferred_order = [
         "School / University",
@@ -278,6 +355,7 @@ def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         "REG Secs",
         "REG Pass Rate",
         "Value Count",
+        "Low Confidence Row",
         "Source Page",
         "Confidence",
         "Review Flag",
@@ -285,11 +363,7 @@ def clean_university_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         "Raw OCR Line",
     ]
 
-    existing_cols = [col for col in preferred_order if col in df.columns]
-    remaining_cols = [col for col in df.columns if col not in existing_cols]
-    df = df[existing_cols + remaining_cols]
-
-    return df.reset_index(drop=True)
+    return reorder_columns(df.reset_index(drop=True), preferred_order)
 
 
 def clean_excel_file(input_path: Path, output_path: Path, cleaner_func) -> None:
