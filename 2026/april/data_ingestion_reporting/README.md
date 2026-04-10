@@ -74,38 +74,24 @@ The database includes three main tables:
 
 ## How to run it
 
-### 1. Clone the repository
-
-```bash
-git clone <your-repo-url>
-cd job-data-pipeline
-
-
-
-Create virtual environment (recommended):
 python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
-
-Install dependencies:
+source venv/bin/activate
 pip install -r requirements.txt
 
-Set up environment variables:
-Create a .env file based on .env.example:
-DB_NAME=jobs
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_HOST=localhost
-DB_PORT=5432
+docker run --name job-postgres \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=jobs \
+  -p 5433:5432 \
+  -d postgres:16
 
-Create the database schema:
-psql -U postgres -d jobs -f db/schema.sql
+docker exec -i job-postgres psql -U postgres -d jobs < db/schema.sql
 
-Run the pipeline:
 python src/pipeline.py
 
-You should see output like:
-Pipeline complete. Inserted X new jobs.
+
+
+
 
 Example query:
 SELECT title, company, location, posted_at
