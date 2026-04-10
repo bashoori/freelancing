@@ -1,8 +1,9 @@
 import re
 import time
+from urllib.parse import urljoin
+
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
 
 from src.config import (
     HEADERS,
@@ -22,7 +23,7 @@ def fetch_page(url: str) -> str:
         response = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
         return response.text
-    except Exception:
+    except requests.RequestException:
         return ""
 
 
@@ -33,7 +34,7 @@ def extract_text(html: str) -> str:
 
 def extract_emails(text: str) -> list[str]:
     emails = re.findall(EMAIL_REGEX, text, re.IGNORECASE)
-    return sorted(set(email.lower() for email in emails))
+    return sorted({email.lower() for email in emails})
 
 
 def is_generic_email(email: str) -> bool:
@@ -46,11 +47,11 @@ def is_generic_email(email: str) -> bool:
 
 
 def pick_best_generic_email(emails: list[str], domain: str) -> str:
-    generic_emails = [e for e in emails if is_generic_email(e)]
+    generic_emails = [email for email in emails if is_generic_email(email)]
 
-    same_domain = [e for e in generic_emails if e.endswith(domain)]
-    if same_domain:
-        return same_domain[0]
+    same_domain_emails = [email for email in generic_emails if email.endswith(domain)]
+    if same_domain_emails:
+        return same_domain_emails[0]
 
     if generic_emails:
         return generic_emails[0]
@@ -73,6 +74,45 @@ def extract_city(text: str) -> str:
     return ""
 
 
+def extract_contact_links(html: str, base_url: str) -> list[str]:
+    soup = BeautifulSoup(html, "lxml")
+    links = set()
+
+    keywords = [
+        "contact",
+        "contacts",
+        "yhteystiedot",
+        "ota-yhteytta",
+        "ota yhteytta",
+    ]
+
+    for anchor in soup.find_all("a", href=True):
+        href = anchor["href"].strip()
+        link_text = anchor.get_text(" ", strip=True).lower()
+        href_lower = href.lower()
+
+        if any(keyword in href_lower or keyword in link_text for keyword in keywords):
+            full_url = urljoin(base_url, href)
+            links.add(full_url)
+
+    return sorted(links)
+
+
+def build_urls_to_check(base_url: str) -> list[str]:
+    urls = set()
+
+    homepage_html = fetch_page(base_url)
+    if homepage_html:
+        urls.add(base_url)
+        urls.update(extract_contact_links(homepage_html, base_url))
+
+    for path in CONTACT_PATHS:
+        full_url = urljoin(base_url + "/", path.lstrip("/"))
+        urls.add(full_url)
+
+    return sorted(urls)
+
+
 def scrape_company(company_name: str, website: str) -> dict:
     base_url = normalize_website(website)
     domain = get_domain(base_url)
@@ -81,10 +121,10 @@ def scrape_company(company_name: str, website: str) -> dict:
     phone = ""
     city = ""
 
-    for path in CONTACT_PATHS:
-        url = urljoin(base_url + "/", path.lstrip("/"))
-        html = fetch_page(url)
+    urls_to_check = build_urls_to_check(base_url)
 
+    for url in urls_to_check:
+        html = fetch_page(url)
         if not html:
             continue
 
