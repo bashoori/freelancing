@@ -24,3 +24,5 @@ psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 
 connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
 
 2026-04-10 22:48:32,900 | INFO | Pipeline completed successfully. Inserted 96 jobs.
+2026-04-10 23:06:37,616 | INFO | Inserted 0 new jobs.
+2026-04-10 23:06:37,616 | INFO | Pipeline completed successfully. Inserted 0 jobs.

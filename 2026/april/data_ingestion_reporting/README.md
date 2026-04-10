@@ -89,11 +89,11 @@ docker exec -i job-postgres psql -U postgres -d jobs < db/schema.sql
 
 python src/pipeline.py
 
+## How to confirm it:
+docker exec -it job-postgres psql -U postgres -d jobs
+ then:
+SELECT COUNT(*) FROM jobs;
+SELECT COUNT(*) FROM ingestion_runs;
+SELECT * FROM ingestion_runs ORDER BY run_time DESC;
 
-
-
-
-Example query:
-SELECT title, company, location, posted_at
-FROM recent_jobs
-ORDER BY posted_at DESC;
+for exit write  ->  \q
