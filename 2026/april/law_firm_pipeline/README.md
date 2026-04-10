@@ -101,8 +101,12 @@ That framing is stronger than saying you built a few dashboards.
 
 ## Architecture
 
-![Architecture](docs/architecture.png)
+![Architecture](img/architecture.png)
 
 ## Dashboard Mockup
 
-![Dashboard Mockup](docs/dashboard_mockup.png)
+![Dashboard Mockup](img/dashboard_mockup.png)
+
+
+
+
