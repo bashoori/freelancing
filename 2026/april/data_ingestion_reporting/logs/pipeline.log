@@ -1,0 +1,9 @@
+import logging
+
+logging.basicConfig(
+    filename="logs/pipeline.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s"
+)
+
+logging.info(f"Loaded {len(jobs)} jobs")
