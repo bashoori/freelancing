@@ -1,5 +1,5 @@
 
-# Law Firm Reporting Pipeline Portfolio Project
+# Law Firm Analytics Platform: Pipeline, KPI Models, and Executive Dashboard
 
 A GitHub-ready portfolio project that simulates the kind of work described in a real Upwork role: centralizing fragmented law-firm data from operations, marketing, finance, and communications into a reporting-ready model.
 
